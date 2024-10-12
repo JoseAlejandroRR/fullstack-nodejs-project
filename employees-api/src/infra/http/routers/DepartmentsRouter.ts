@@ -1,6 +1,7 @@
 import { GatewayRouter } from '../GatewayRouter'
 import { inject, injectable } from 'tsyringe'
 import DepartmentsController from '../controllers/DepartmentsController'
+import GetAllDepartmentsRequest from '../validators/GetAllDepartmentsRequest'
 @injectable()
 class DepartmentsRouter extends GatewayRouter {
 
@@ -15,6 +16,7 @@ class DepartmentsRouter extends GatewayRouter {
 
     this.routes.get(
       '/',
+      ...GetAllDepartmentsRequest,
       this.departmentsController.getAllDepartments.bind(this.departmentsController)
     )
   }

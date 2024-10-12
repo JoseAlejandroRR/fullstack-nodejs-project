@@ -37,9 +37,6 @@ export const RequireEmail = () => z.string().min(1).email('Invalid Email Address
 
 export const OptionalEmail = () => z.string().min(1).email('Invalid Email Address').optional()
 
-export const RequireUUID = () => z.string()
-  .refine((val) => isUuid(val) && val.split('-')[2][0] === '4', {
-    message: 'Invalid UUID',
-  })
+export const RequireUUID = () => z.string().uuid()
 
 export const OptionalUUID = () => RequireUUID().optional()

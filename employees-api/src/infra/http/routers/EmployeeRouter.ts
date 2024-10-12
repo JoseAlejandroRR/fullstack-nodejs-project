@@ -3,6 +3,9 @@ import { GatewayRouter } from '../GatewayRouter'
 import EmployeesController from '../controllers/EmployeesController'
 import PostCreateEmployee from '../validators/PostCreateEmployee'
 import PutUpdateEmployee from '../validators/PutUpdateEmployee'
+import GetEmployeeRequest from '../validators/GetEmployeeRequest'
+import DeleteEmployeeRequest from '../validators/DeleteEmployeeRequest'
+import GetAllEmployeesRequest from '../validators/GetAllEmployeesRequest'
 
 @injectable()
 class EmployeeRouter extends GatewayRouter {
@@ -18,11 +21,13 @@ class EmployeeRouter extends GatewayRouter {
 
     this.routes.delete(
       '/:employeeId',
+      ...DeleteEmployeeRequest,
       this.employeeController.deleteEmployee.bind(this.employeeController)
     )
 
     this.routes.get(
       '/:employeeId',
+      ...GetEmployeeRequest,
       this.employeeController.getEmployee.bind(this.employeeController)
     )
     
@@ -40,6 +45,7 @@ class EmployeeRouter extends GatewayRouter {
 
     this.routes.get(
       '/',
+      ...GetAllEmployeesRequest,
       this.employeeController.getAllEmployees.bind(this.employeeController)
     )
   }

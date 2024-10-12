@@ -12,6 +12,19 @@ httpServer.use('*', cors({ origin: '*' }))
 
 httpServer.use(logger())
 
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   security:
+ *     - bearerAuth: []
+ *
+ */
+
 // Auth Middleware
 if (AUTH_LAYER_ACTIVE === 'true') {
   console.info('AUTH_LAYER its working.')

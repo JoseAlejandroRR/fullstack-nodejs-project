@@ -1,5 +1,43 @@
 import { User } from '@/domain/models/User'
 import ViewModel from '../ViewModel'
+
+/**
+ * A view model for a User Model.
+ *
+ * @swagger
+ * components:
+ *   schemas:
+ *     UserViewModel:
+ *       description: User Authentication Token
+ *       properties:
+ *         id:
+ *           type: string
+ *           example: a8d56d51-1917-40ca-aa56-38a7acb2321b
+ *         firstname:
+ *           type: string
+ *           example: John
+ *         lastname:
+ *           type: string
+ *           example: Smith
+ *         fullName:
+ *           type: string
+ *           example: John Smith
+ *         email:
+ *           type: string
+ *           example: john.smit@domain.com
+ *         role:
+ *           type: strubg
+ *           enum: [USER, ADMIN, EMPLOYEE]
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}\w{1}$'
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}\w{1}$'
+ */
+
 class UserViewModel extends ViewModel<User> {
   constructor(user: User) {
     const view: Record<string, any> = {
