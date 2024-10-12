@@ -50,6 +50,7 @@ export class Employee extends BaseEntity {
     employee.phone = createEmployeeDto.phone;
     employee.address = createEmployeeDto.address;
     employee.departmentId = createEmployeeDto.departmentId;
+    employee.status = createEmployeeDto.status ?? EmployeeStatus.ACTIVE;
 
     return employee;
   }
