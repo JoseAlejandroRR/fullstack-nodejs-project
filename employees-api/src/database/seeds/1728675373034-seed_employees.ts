@@ -1,23 +1,22 @@
-import { Employee } from './../../domain/models/Employee';
-import { DataSource } from 'typeorm';
-import { Seeder, SeederFactoryManager } from 'typeorm-extension';
-
+import { Employee } from './../../domain/models/Employee'
+import { DataSource } from 'typeorm'
+import { Seeder, SeederFactoryManager } from 'typeorm-extension'
 export class SeedEmployees1728675373034 implements Seeder {
-    track = false;
+  track = false;
 
-    public async run(
-        dataSource: DataSource,
-        factoryManager: SeederFactoryManager
-    ): Promise<any> {
-        console.log('::SEED_EMPLOYEES::')
-        const repository =  dataSource.getRepository(Employee);
-        const hasRecords = await repository.find()
-        console.log(hasRecords.length)
+  public async run(
+      dataSource: DataSource,
+      factoryManager: SeederFactoryManager
+  ): Promise<any> {
+    console.log('::SEED_EMPLOYEES::')
+    const repository =  dataSource.getRepository(Employee)
+    const hasRecords = await repository.find()
+    console.log(hasRecords.length)
 
-        if (hasRecords.length > 0) return
+    if (hasRecords.length > 0) return
 
-        const employeeFactory = factoryManager.get(Employee)
+    const employeeFactory = factoryManager.get(Employee)
 
-        await employeeFactory.saveMany(20)
-    }
+    await employeeFactory.saveMany(20)
+  }
 }

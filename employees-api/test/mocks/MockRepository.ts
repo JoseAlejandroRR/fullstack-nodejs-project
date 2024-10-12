@@ -1,8 +1,10 @@
-import { IRepository } from '@/domain/repositories/IRepository';
-import { SearchRepository } from '@/domain/repositories/ISearchRepository';
-import { v4 as uuidv4 } from 'uuid';
+import { IRepository } from '@/domain/repositories/IRepository'
+import { SearchRepository } from '@/domain/repositories/ISearchRepository'
+import { v4 as uuidv4 } from 'uuid'
 
-class MockRepository<T extends { id?: string, createdAt?: Date, updatedAt?: Date }> implements IRepository<T> {
+class MockRepository<T extends { id?: string, createdAt?: Date, updatedAt?: Date }>
+  implements IRepository<T> {
+
   private items: T[] = []
 
   async findOne(where: SearchRepository<T>): Promise<T | null> {
@@ -22,11 +24,11 @@ class MockRepository<T extends { id?: string, createdAt?: Date, updatedAt?: Date
 
     const now = new Date()
 
-     Object.assign(entity, {
+    Object.assign(entity, {
         id: uuidv4(), 
         createdAt: now, 
         updatedAt: now,
-     })
+    })
 
     this.items.push(entity)
 
@@ -36,11 +38,12 @@ class MockRepository<T extends { id?: string, createdAt?: Date, updatedAt?: Date
   async update(entity: T): Promise<T> {
     const index = this.items.findIndex(item => (item as any).id === (entity as any).id)
     if (index !== -1) {
-      const now = new Date();
+      const now = new Date()
       const updatedEntity = { 
         ...entity, 
         updatedAt: now 
-      } as T;
+      } as T
+
       this.items[index] = updatedEntity
 
       return updatedEntity
@@ -63,5 +66,6 @@ class MockRepository<T extends { id?: string, createdAt?: Date, updatedAt?: Date
     })
   }
 }
+
 
 export default MockRepository

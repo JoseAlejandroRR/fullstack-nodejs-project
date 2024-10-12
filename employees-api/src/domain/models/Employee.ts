@@ -1,27 +1,26 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'; 
-import { Department } from './Department';
-import { CreateEmployeeDto } from '@/application/dto/employees/CreateEmployee';
-import { UpdateEmployeeDto } from '@/application/dto/employees/UpdateEmployee';
-import EmployeeStatus from '../enums/EmployeeStatus';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
+import { Department } from './Department'
+import { CreateEmployeeDto } from '@/application/dto/employees/CreateEmployee'
+import { UpdateEmployeeDto } from '@/application/dto/employees/UpdateEmployee'
+import EmployeeStatus from '../enums/EmployeeStatus'
 
 export const TABLE_EMPLOYEES = 'employees'
-
 @Entity(TABLE_EMPLOYEES)
 export class Employee extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string
 
   @Column({ type: 'varchar' })
-  firstname!: string;
+  firstname!: string
 
   @Column({ type: 'varchar' })
-  lastname!: string;
+  lastname!: string
 
   @Column({ name:'hired_at', type: 'datetime'})
   hiredAt!: Date
 
   @Column({ type: 'varchar' })
-  phone?: string;
+  phone?: string
 
   @Column({ type: 'varchar', nullable: true })
   address?: string
@@ -34,55 +33,56 @@ export class Employee extends BaseEntity {
 
   @ManyToOne(() => Department, { nullable: true, onDelete: 'CASCADE'  })
   @JoinColumn({ name: 'department_id' })
-  department?: Department;
+  department?: Department
   
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
-  createdAt!: Date;
+  createdAt!: Date
 
   @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
-  updatedAt!: Date;
+  updatedAt!: Date
 
   static factory(createEmployeeDto: CreateEmployeeDto): Employee {
-    const employee = new Employee();
-    employee.firstname = createEmployeeDto.firstname;
-    employee.lastname = createEmployeeDto.lastname;
-    employee.hiredAt = createEmployeeDto.hiredAt;
-    employee.phone = createEmployeeDto.phone;
-    employee.address = createEmployeeDto.address;
-    employee.departmentId = createEmployeeDto.departmentId;
-    employee.status = createEmployeeDto.status ?? EmployeeStatus.ACTIVE;
+    const employee = new Employee()
 
-    return employee;
+    employee.firstname = createEmployeeDto.firstname
+    employee.lastname = createEmployeeDto.lastname
+    employee.hiredAt = createEmployeeDto.hiredAt
+    employee.phone = createEmployeeDto.phone
+    employee.address = createEmployeeDto.address
+    employee.departmentId = createEmployeeDto.departmentId
+    employee.status = createEmployeeDto.status ?? EmployeeStatus.ACTIVE
+
+    return employee
   }
 
   update(updateEmployeeDto: UpdateEmployeeDto): void {
 
     if (updateEmployeeDto.firstname !== undefined) {
-      this.firstname = updateEmployeeDto.firstname;
+      this.firstname = updateEmployeeDto.firstname
     }
 
     if (updateEmployeeDto.lastname !== undefined) {
-      this.lastname = updateEmployeeDto.lastname;
+      this.lastname = updateEmployeeDto.lastname
     }
 
     if (updateEmployeeDto.hiredAt !== undefined) {
-      this.hiredAt = updateEmployeeDto.hiredAt;
+      this.hiredAt = updateEmployeeDto.hiredAt
     }
 
     if (updateEmployeeDto.phone !== undefined) {
-      this.phone = updateEmployeeDto.phone;
+      this.phone = updateEmployeeDto.phone
     }
 
     if (updateEmployeeDto.address !== undefined) {
-      this.address = updateEmployeeDto.address;
+      this.address = updateEmployeeDto.address
     }
 
     if (updateEmployeeDto.status !== undefined) {
-      this.status = updateEmployeeDto.status;
+      this.status = updateEmployeeDto.status
     }
 
     if (updateEmployeeDto.departmentId !== undefined) {
-      this.departmentId = updateEmployeeDto.departmentId;
+      this.departmentId = updateEmployeeDto.departmentId
     }
   }
 

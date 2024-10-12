@@ -1,5 +1,4 @@
-import { SearchRepository } from "./ISearchRepository";
-
+import { SearchRepository } from './ISearchRepository'
 export interface IRepository<T> {
 
   findOne(where: SearchRepository<T>): Promise<T | null>

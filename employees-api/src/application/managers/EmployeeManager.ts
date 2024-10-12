@@ -1,19 +1,18 @@
-import { Employee } from '@/domain/models/Employee';
-import BaseManager from './BaseManager';
-import { CreateEmployeeDto } from '../dto/employees/CreateEmployee';
-import { inject, injectable } from 'tsyringe';
-import EmployeeService from '../services/EmployeeService';
-import { UpdateEmployeeDto } from '../dto/employees/UpdateEmployee';
-import EmployeeStatus from '@/domain/enums/EmployeeStatus';
-import { ServiceProviderIds } from '@/domain/ServiceProvideIds';
-import IDatabase from '@/domain/database/IDatabase';
-
+import { Employee } from '@/domain/models/Employee'
+import BaseManager from './BaseManager'
+import { CreateEmployeeDto } from '../dto/employees/CreateEmployee'
+import { inject, injectable } from 'tsyringe'
+import EmployeeService from '../services/EmployeeService'
+import { UpdateEmployeeDto } from '../dto/employees/UpdateEmployee'
+import EmployeeStatus from '@/domain/enums/EmployeeStatus'
+import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
+import IDatabase from '@/domain/database/IDatabase'
 @injectable()
 class EmployeeManager extends BaseManager {
 
   constructor(
     @inject(ServiceProviderIds.Database) private database: IDatabase, 
-    @inject(EmployeeService) private employeeService: EmployeeService,
+    @inject(EmployeeService) private employeeService: EmployeeService
   ) {
     super()
   }

@@ -1,12 +1,11 @@
-import EmployeeManager from '@/application/managers/EmployeeManager';
-import { BaseController } from './BaseController';
-import { inject, injectable } from 'tsyringe';
-import { Context } from 'hono';
-import { CreateEmployeeDto } from '@/application/dto/employees/CreateEmployee';
-import ViewModel from '@/domain/views/ViewModel';
-import EmployeeViewModel from '@/domain/views/employees/EmployeeViewModel';
-import { UpdateEmployeeDto } from '@/application/dto/employees/UpdateEmployee';
-
+import EmployeeManager from '@/application/managers/EmployeeManager'
+import { BaseController } from './BaseController'
+import { inject, injectable } from 'tsyringe'
+import { Context } from 'hono'
+import { CreateEmployeeDto } from '@/application/dto/employees/CreateEmployee'
+import ViewModel from '@/domain/views/ViewModel'
+import EmployeeViewModel from '@/domain/views/employees/EmployeeViewModel'
+import { UpdateEmployeeDto } from '@/application/dto/employees/UpdateEmployee'
 @injectable()
 class EmployeesController extends BaseController {
 

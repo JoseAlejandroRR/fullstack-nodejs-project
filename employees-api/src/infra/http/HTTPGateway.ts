@@ -1,27 +1,22 @@
-import { Hono } from 'hono';
-import EmployeeRouter from './routers/EmployeeRouter';
-import AuthRouter from './routers/AuthRouter';
-import { inject, injectable } from 'tsyringe';
-import { ZodError } from 'zod';
-import EntityNotFoundException from '@/domain/exceptions/EntityNotFoundException';
-import DepartmentsRouter from './routers/DepartmentsRouter';
-import UnauthorizedUserException from '@/domain/exceptions/UnauthorizedUserException';
+import { Hono } from 'hono'
+import EmployeeRouter from './routers/EmployeeRouter'
+import AuthRouter from './routers/AuthRouter'
+import { inject, injectable } from 'tsyringe'
+import { ZodError } from 'zod'
+import EntityNotFoundException from '@/domain/exceptions/EntityNotFoundException'
+import DepartmentsRouter from './routers/DepartmentsRouter'
+import UnauthorizedUserException from '@/domain/exceptions/UnauthorizedUserException'
 import { HTTPException } from 'hono/http-exception'
-
-
 @injectable()
 class HTTPGateway {
   constructor(
     @inject(AuthRouter) private authRouter: AuthRouter,
     @inject(EmployeeRouter) protected employeeRouter: EmployeeRouter,
     @inject(DepartmentsRouter) protected departmentRouter: DepartmentsRouter
-  ) {
-
-  }
+  ) {}
 
   async bindRoutes(server: Hono) {
     const gateway = new Hono()
-
 
     server.onError((err, c) => {
       console.log('[Backend Error]:')
@@ -51,7 +46,6 @@ class HTTPGateway {
     gateway.route('/employees', this.employeeRouter.routes)
     gateway.route('/departments', this.departmentRouter.routes)
     gateway.route('/auth', this.authRouter.routes)
-
 
     server.route('/api', gateway)
   }

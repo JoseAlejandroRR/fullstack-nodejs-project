@@ -1,16 +1,15 @@
 import 'dotenv/config'
-import 'reflect-metadata';
-import 'tsconfig-paths/register';
+import 'reflect-metadata'
+import 'tsconfig-paths/register'
 
 import { AddressInfo } from 'net'
 import httpServer from './infra/http/HTTPServer'
 import { serve } from '@hono/node-server'
 import HTTPGateway from './infra/http/HTTPGateway'
-import ApplicationContext from './infra/ApplicationContext';
-import { container } from 'tsyringe';
-import IDatabase from './domain/database/IDatabase';
-import { ServiceProviderIds } from './domain/ServiceProvideIds';
-
+import ApplicationContext from './infra/ApplicationContext'
+import { container } from 'tsyringe'
+import IDatabase from './domain/database/IDatabase'
+import { ServiceProviderIds } from './domain/ServiceProvideIds'
 
 ApplicationContext.initialize()
 

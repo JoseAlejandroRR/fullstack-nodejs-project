@@ -1,6 +1,5 @@
-import { Department } from "../models/Department";
-import { IRepository } from "./IRepository";
-
+import { Department } from '../models/Department'
+import { IRepository } from './IRepository'
 interface IDepartmentRepository extends IRepository<Department> {
 
 }

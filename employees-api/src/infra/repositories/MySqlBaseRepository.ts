@@ -1,10 +1,9 @@
-import { SearchRepository } from '@/domain/repositories/ISearchRepository';
-import {  Repository, BaseEntity, FindOptionsWhere, FindManyOptions, FindOneOptions } from 'typeorm';
-import { inject } from 'tsyringe';
-import { ServiceProviderIds } from '@/domain/ServiceProvideIds';
-import MysqlDatabase from '../database/MysqlDatabase';
-import { IRepository } from '@/domain/repositories/IRepository';
-
+import { SearchRepository } from '@/domain/repositories/ISearchRepository'
+import {  Repository, BaseEntity, FindOptionsWhere, FindManyOptions, FindOneOptions } from 'typeorm'
+import { inject } from 'tsyringe'
+import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
+import MysqlDatabase from '../database/MysqlDatabase'
+import { IRepository } from '@/domain/repositories/IRepository'
 abstract class MySqlBaseRepository<T extends BaseEntity> implements IRepository<T> {
 
   private _entityRepository: Repository<T>

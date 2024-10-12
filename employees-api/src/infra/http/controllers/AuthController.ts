@@ -1,13 +1,12 @@
-import { Context } from 'hono';
-import { BaseController } from './BaseController';
-import { AuthenticationResult, UserCredentials } from '@/domain/security';
-import { inject, injectable } from 'tsyringe';
-import UserManager from '@/application/managers/UserManager';
-import { MysqlConfig } from '@/infra/database/MysqlConfig';
-import { User } from '@/domain/models/User';
-import ViewModel from '@/domain/views/ViewModel';
-import LoginSuccessViewModel from '@/domain/views/auth/LoginSuccessViewModel';
-
+import { Context } from 'hono'
+import { BaseController } from './BaseController'
+import { AuthenticationResult, UserCredentials } from '@/domain/security'
+import { inject, injectable } from 'tsyringe'
+import UserManager from '@/application/managers/UserManager'
+import { MysqlConfig } from '@/infra/database/MysqlConfig'
+import { User } from '@/domain/models/User'
+import ViewModel from '@/domain/views/ViewModel'
+import LoginSuccessViewModel from '@/domain/views/auth/LoginSuccessViewModel'
 @injectable()
 class AuthController extends BaseController {
 

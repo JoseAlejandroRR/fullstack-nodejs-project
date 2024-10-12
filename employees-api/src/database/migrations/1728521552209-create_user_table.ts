@@ -1,7 +1,6 @@
-import UserRole from './../../domain/enums/UserRole';
-import { TABLE_USERS } from './../../domain/models/User';
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
-
+import UserRole from './../../domain/enums/UserRole'
+import { TABLE_USERS } from './../../domain/models/User'
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 export class createUsersTable1728521552209 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
 
@@ -53,10 +52,10 @@ export class createUsersTable1728521552209 implements MigrationInterface {
           },
         ],
       })
-    );
+    )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable(TABLE_USERS);
+    await queryRunner.dropTable(TABLE_USERS)
   }
 }

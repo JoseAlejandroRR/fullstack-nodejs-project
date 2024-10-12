@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource } from 'typeorm'
 
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE, NODE_ENV } = process.env
 

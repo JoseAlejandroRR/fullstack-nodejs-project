@@ -1,8 +1,7 @@
-import { Department } from "@/domain/models/Department";
-import IDepartmentRepository from "@/domain/repositories/IDepartmentRepository";
-import { ServiceProviderIds } from "@/domain/ServiceProvideIds";
-import { inject, injectable } from "tsyringe";
-
+import { Department } from '@/domain/models/Department'
+import IDepartmentRepository from '@/domain/repositories/IDepartmentRepository'
+import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
+import { inject, injectable } from 'tsyringe'
 @injectable()
 class DepartmentService {
 
@@ -20,6 +19,6 @@ class DepartmentService {
     return departments
   }
 
- }
+}
 
 export default DepartmentService

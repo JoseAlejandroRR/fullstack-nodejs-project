@@ -1,4 +1,3 @@
-
 abstract class ViewModel<T> {
 
   private data: Record<string, any>
@@ -23,7 +22,7 @@ abstract class ViewModel<T> {
   
 
   public toJSON(): Record<string, any> {
-    return this.data;
+    return this.data
   }
 }
 

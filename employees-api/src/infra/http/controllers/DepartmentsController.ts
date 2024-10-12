@@ -1,10 +1,9 @@
-import { inject, injectable } from 'tsyringe';
-import { BaseController } from './BaseController';
-import DepartmentManager from '@/application/managers/DepartmentManager';
-import { Context } from 'hono';
-import ViewModel from '@/domain/views/ViewModel';
-import DepartmentViewModel from '@/domain/views/departments/DepartmentViewModel';
-
+import { inject, injectable } from 'tsyringe'
+import { BaseController } from './BaseController'
+import DepartmentManager from '@/application/managers/DepartmentManager'
+import { Context } from 'hono'
+import ViewModel from '@/domain/views/ViewModel'
+import DepartmentViewModel from '@/domain/views/departments/DepartmentViewModel'
 @injectable()
 class DepartmentsController extends BaseController {
 

@@ -1,8 +1,7 @@
-import { TABLE_DEPARTMENTS } from './../../domain/models/Department';
-import EmployeeStatus from './../../domain/enums/EmployeeStatus';
-import { TABLE_EMPLOYEES } from './../../domain/models/Employee';
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
-
+import { TABLE_DEPARTMENTS } from './../../domain/models/Department'
+import EmployeeStatus from './../../domain/enums/EmployeeStatus'
+import { TABLE_EMPLOYEES } from './../../domain/models/Employee'
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm'
 export class createEmployeesTable1728523379597 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
 
@@ -62,7 +61,7 @@ export class createEmployeesTable1728523379597 implements MigrationInterface {
           },
         ],
       })
-    );
+    )
 
     await queryRunner.createForeignKey(
       TABLE_EMPLOYEES,
@@ -78,11 +77,11 @@ export class createEmployeesTable1728523379597 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
 
     const table = await queryRunner.getTable(TABLE_EMPLOYEES);
-    const foreignKey = table!.foreignKeys.find(fk => fk.columnNames.indexOf('department_id') !== -1);
+    const foreignKey = table!.foreignKeys.find(fk => fk.columnNames.indexOf('department_id') !== -1)
     if (foreignKey) {
-      await queryRunner.dropForeignKey(TABLE_EMPLOYEES, foreignKey);
+      await queryRunner.dropForeignKey(TABLE_EMPLOYEES, foreignKey)
     }
 
-    await queryRunner.dropTable(TABLE_EMPLOYEES);
+    await queryRunner.dropTable(TABLE_EMPLOYEES)
   }
 }

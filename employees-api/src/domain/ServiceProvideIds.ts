@@ -1,8 +1,8 @@
 export enum ServiceProviderIds {
-  Database               = 'Database',
+  Database = 'Database',
 
   //Repositories
-  UserRepository         = 'UserRepository',
-  DepartmentRepository   = 'DepartmentRepository',
-  EmployeeRepository     = 'EmployeeRepository',
+  UserRepository = 'UserRepository',
+  DepartmentRepository = 'DepartmentRepository',
+  EmployeeRepository = 'EmployeeRepository',
 }

@@ -1,6 +1,6 @@
-import { Context, Next } from "hono";
-import { jwt } from "hono/jwt";
-import { match } from 'path-to-regexp';
+import { Context, Next } from 'hono'
+import { jwt } from 'hono/jwt'
+import { match } from 'path-to-regexp'
 
 const { JWT_SECRET_KEY } =  process.env
 
@@ -15,7 +15,7 @@ const isWhitelisted = (url: string): boolean => {
     const checked = checker(url)
 
     return checked
-  });
+  })
 }
 
 export const authMiddleware = async (c: Context, next: Next) => {
@@ -27,5 +27,5 @@ export const authMiddleware = async (c: Context, next: Next) => {
 
   return jwt({
     secret: String(JWT_SECRET_KEY),
-  })(c, next);
+  })(c, next)
 }

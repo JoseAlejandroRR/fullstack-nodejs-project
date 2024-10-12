@@ -1,6 +1,6 @@
-import DepartmentViewModel from "../departments/DepartmentViewModel";
-import ViewModel from "../ViewModel";
-import { Employee } from "@/domain/models/Employee";
+import DepartmentViewModel from '../departments/DepartmentViewModel'
+import ViewModel from '../ViewModel'
+import { Employee } from '@/domain/models/Employee'
 
 class EmployeeViewModel extends ViewModel<Employee> {
   constructor(employee: Employee) {

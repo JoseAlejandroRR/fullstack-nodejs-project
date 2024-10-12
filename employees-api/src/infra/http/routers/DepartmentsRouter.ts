@@ -1,7 +1,6 @@
-import { GatewayRouter } from '../GatewayRouter';
-import { inject, injectable } from 'tsyringe';
-import DepartmentsController from '../controllers/DepartmentsController';
-
+import { GatewayRouter } from '../GatewayRouter'
+import { inject, injectable } from 'tsyringe'
+import DepartmentsController from '../controllers/DepartmentsController'
 @injectable()
 class DepartmentsRouter extends GatewayRouter {
 

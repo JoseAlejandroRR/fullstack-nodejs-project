@@ -1,8 +1,7 @@
-import IDatabase from '@/domain/database/IDatabase';
-import { MysqlConfig } from './MysqlConfig';
+import IDatabase from '@/domain/database/IDatabase'
+import { MysqlConfig } from './MysqlConfig'
 import { DataSource, QueryRunner } from 'typeorm'
-import { injectable } from 'tsyringe';
-
+import { injectable } from 'tsyringe'
 @injectable()
 export class MysqlDatabase implements IDatabase {
 

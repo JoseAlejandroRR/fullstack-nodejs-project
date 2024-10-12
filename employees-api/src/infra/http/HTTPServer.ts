@@ -1,14 +1,14 @@
-import { Hono } from 'hono';
-import { cors } from 'hono/cors';
-import { logger } from 'hono/logger';
-import { authMiddleware } from './middlewares/AuthMiddleware';
+import { Hono } from 'hono'
+import { cors } from 'hono/cors'
+import { logger } from 'hono/logger'
+import { authMiddleware } from './middlewares/AuthMiddleware'
 
 const { AUTH_LAYER_ACTIVE } =  process.env
 
 const httpServer = new Hono()
 
 // Middleware for CORS
-httpServer.use('*', cors({ origin: '*' }));
+httpServer.use('*', cors({ origin: '*' }))
 
 httpServer.use(logger())
 

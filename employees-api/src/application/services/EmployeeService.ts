@@ -1,11 +1,10 @@
-import { Employee } from "@/domain/models/Employee";
-import { CreateEmployeeDto } from "../dto/employees/CreateEmployee";
-import { inject, injectable } from "tsyringe";
-import { ServiceProviderIds } from "@/domain/ServiceProvideIds";
-import IEmployeeRepository from "@/domain/repositories/IEmployeeRepository";
-import { UpdateEmployeeDto } from "../dto/employees/UpdateEmployee";
-import EntityNotFoundException from "@/domain/exceptions/EntityNotFoundException";
-
+import { Employee } from '@/domain/models/Employee'
+import { CreateEmployeeDto } from '../dto/employees/CreateEmployee'
+import { inject, injectable } from 'tsyringe'
+import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
+import IEmployeeRepository from '@/domain/repositories/IEmployeeRepository'
+import { UpdateEmployeeDto } from '../dto/employees/UpdateEmployee'
+import EntityNotFoundException from '@/domain/exceptions/EntityNotFoundException'
 @injectable()
 class EmployeeService {
 

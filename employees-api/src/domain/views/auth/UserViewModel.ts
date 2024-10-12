@@ -1,6 +1,5 @@
-import { User } from "@/domain/models/User";
-import ViewModel from "../ViewModel";
-
+import { User } from '@/domain/models/User'
+import ViewModel from '../ViewModel'
 class UserViewModel extends ViewModel<User> {
   constructor(user: User) {
     const view: Record<string, any> = {

@@ -1,6 +1,5 @@
-import { Department } from "@/domain/models/Department";
-import ViewModel from "../ViewModel";
-
+import { Department } from '@/domain/models/Department'
+import ViewModel from '../ViewModel'
 class DepartmentViewModel extends ViewModel<Department> {
   constructor(department: Department) {
     const view: Record<string, any> = {

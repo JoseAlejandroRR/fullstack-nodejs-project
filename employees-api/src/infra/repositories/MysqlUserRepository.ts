@@ -1,10 +1,9 @@
-import { User } from '@/domain/models/User';
-import MySqlBaseRepository from './MySqlBaseRepository';
-import { inject, injectable } from 'tsyringe';
-import MysqlDatabase from '../database/MysqlDatabase';
-import { ServiceProviderIds } from '@/domain/ServiceProvideIds';
-import { IUserRepository } from '@/domain/repositories/IUserRepository';
-
+import { User } from '@/domain/models/User'
+import MySqlBaseRepository from './MySqlBaseRepository'
+import { inject, injectable } from 'tsyringe'
+import MysqlDatabase from '../database/MysqlDatabase'
+import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
+import { IUserRepository } from '@/domain/repositories/IUserRepository'
 @injectable()
 class MysqlUserRepository extends MySqlBaseRepository<User> implements IUserRepository {
 

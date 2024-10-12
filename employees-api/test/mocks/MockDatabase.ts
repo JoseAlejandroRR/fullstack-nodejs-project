@@ -3,7 +3,7 @@ export class MockDatabase {
   private transactionActive = false
 
   async startConnection() {
-    return true;
+    return true
   }
 
   isTransactionActive() {
@@ -16,7 +16,7 @@ export class MockDatabase {
 
   async commit() {
     this.transactionActive = false
-    return true;
+    return true
   }
 
   async rollback() {
@@ -27,5 +27,3 @@ export class MockDatabase {
     this.transactionActive = false
   }
 }
-
-  

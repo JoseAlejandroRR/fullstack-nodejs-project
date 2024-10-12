@@ -1,13 +1,12 @@
-import { inject, injectable } from 'tsyringe';
-import BaseManager from './BaseManager';
-import { Department } from '@/domain/models/Department';
-import DepartmentService from '../services/DepartmentService';
-
+import { inject, injectable } from 'tsyringe'
+import BaseManager from './BaseManager'
+import { Department } from '@/domain/models/Department'
+import DepartmentService from '../services/DepartmentService'
 @injectable()
 class DepartmentManager extends BaseManager {
-  
+
   constructor(
-    @inject(DepartmentService) private departmentService: DepartmentService,
+    @inject(DepartmentService) private departmentService: DepartmentService
   ) {
     super()
   }

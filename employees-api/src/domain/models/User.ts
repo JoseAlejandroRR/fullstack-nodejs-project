@@ -1,22 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm'; 
-import UserRole from '../enums/UserRole';
-import bcrypt from 'bcryptjs';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm'
+import UserRole from '../enums/UserRole'
+import bcrypt from 'bcryptjs'
 
 export const TABLE_USERS = 'users'
-
 @Entity(TABLE_USERS)
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string
 
   @Column({ type: 'varchar' })
-  firstname!: string;
+  firstname!: string
 
   @Column({ type: 'varchar' })
-  lastname!: string;
+  lastname!: string
 
   @Column({ type: 'varchar' })
-  email!: string;
+  email!: string
 
   @Column({ type: 'varchar', nullable: true })
   password?: string
@@ -25,10 +24,10 @@ export class User extends BaseEntity {
   role!: UserRole
 
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
-  createdAt!: Date;
+  createdAt!: Date
 
   @UpdateDateColumn({ type: 'timestamp', name: 'updated_at' })
-  updatedAt!: Date;
+  updatedAt!: Date
 
   @BeforeInsert()
   @BeforeUpdate()
@@ -39,7 +38,7 @@ export class User extends BaseEntity {
   }
 
   async checkPassword(password: string): Promise<boolean> {
-    if (!this.password) return false;
-    return bcrypt.compare(password, this.password);
+    if (!this.password) return false
+    return bcrypt.compare(password, this.password)
   }
 }

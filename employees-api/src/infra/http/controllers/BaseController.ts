@@ -1,7 +1,6 @@
-import UnauthorizedUserException from '@/domain/exceptions/UnauthorizedUserException';
-import { AuthSession } from '@/domain/security';
-import { Context } from 'hono';
-
+import UnauthorizedUserException from '@/domain/exceptions/UnauthorizedUserException'
+import { AuthSession } from '@/domain/security'
+import { Context } from 'hono'
 export abstract class BaseController {
 
   protected getAuthSession(ctx: Context): AuthSession {
@@ -9,7 +8,7 @@ export abstract class BaseController {
     if (!auth || !auth.user) {
       throw new UnauthorizedUserException;
     }
-    return auth;
+    return auth
   }
 
 }

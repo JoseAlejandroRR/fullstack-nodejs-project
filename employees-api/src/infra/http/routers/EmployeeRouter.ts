@@ -1,8 +1,8 @@
-import { inject, injectable } from 'tsyringe';
-import { GatewayRouter } from '../GatewayRouter';
-import EmployeesController from '../controllers/EmployeesController';
-import PostCreateEmployee from '../validators/PostCreateEmployee';
-import PutUpdateEmployee from '../validators/PutUpdateEmployee';
+import { inject, injectable } from 'tsyringe'
+import { GatewayRouter } from '../GatewayRouter'
+import EmployeesController from '../controllers/EmployeesController'
+import PostCreateEmployee from '../validators/PostCreateEmployee'
+import PutUpdateEmployee from '../validators/PutUpdateEmployee'
 
 @injectable()
 class EmployeeRouter extends GatewayRouter {

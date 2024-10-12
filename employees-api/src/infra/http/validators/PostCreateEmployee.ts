@@ -1,7 +1,7 @@
-import { MiddlewareHandler } from 'hono';
-import { zValidator } from '@hono/zod-validator';
-import { z } from 'zod';
-import { OptionalString, OptionalUUID, RequiredDate, RequireString } from '.';
+import { MiddlewareHandler } from 'hono'
+import { zValidator } from '@hono/zod-validator'
+import { z } from 'zod'
+import { OptionalString, OptionalUUID, RequiredDate, RequireString } from '.'
 
 const PostCreateEmployee: MiddlewareHandler[] = [
   zValidator('json', z.object({
