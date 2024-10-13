@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, List, Skeleton, Typography } from 'antd'
+import { Button, List, message, notification, Skeleton, Typography } from 'antd'
 import useEmployees from '../../../data/hooks/useEmployees'
 import EmployeeCard from '../../components/employee-card/EmployeeCard'
 import { PlusOutlined } from '@ant-design/icons'
@@ -13,7 +13,7 @@ const { Title } = Typography
 const EmployeesPageLoading = () => <><Skeleton /><Skeleton /><Skeleton /></>
 
 const EmployeesPage: React.FC = () => {
-  const { employees, getAllEmployees, loading } = useEmployees()
+  const { employees, getAllEmployees, deleteEmployee, loading } = useEmployees()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,6 +22,15 @@ const EmployeesPage: React.FC = () => {
 
   const handleViewEmployee = (employee: EmployeeDto) => {
     navigate(`/employees/${employee.id}`)
+  }
+
+  const handleDeleteEmploye = async (employee: EmployeeDto) => {
+    try {
+      await deleteEmployee(employee.id)
+      notification.success({ message: 'Employee deleted', placement: 'bottomRight'})
+    } catch (err) {
+      notification.error({ message: 'Employee can´t be deleted', placement: 'bottomRight'})
+    }
   }
 
   if (loading) return <EmployeesPageLoading />
@@ -48,7 +57,10 @@ const EmployeesPage: React.FC = () => {
           dataSource={employees}
           renderItem={(item) => (
             <List.Item>
-              <EmployeeCard employee={item} onClick={handleViewEmployee} />
+              <EmployeeCard employee={item}
+                onClick={handleViewEmployee}
+                onDelete={handleDeleteEmploye}
+              />
             </List.Item>
           )}
           />

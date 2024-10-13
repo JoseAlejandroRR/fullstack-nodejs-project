@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, Button, Typography } from 'antd'
-import { UserOutlined, LeftOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 import { EmployeeDto } from '../../../data/dto/EmployeeDto'
 import EmployeeCardActions from './EmployeeCardActions'
 import { avatarDefaultURL, DateToFormatTextHuman, DateToShortTextFormat } from '../../../data/utils'
@@ -12,14 +12,19 @@ const { Text } = Typography
 type EmployeeCardProps = {
   employee: EmployeeDto,
   onClick: Function,
+  onDelete: Function,
 }
 
-const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee, onClick }) => {
+const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee, onClick, onDelete }) => {
 
   const handleClick = (e: any) => {
     if (onClick && typeof(onClick) === 'function') {
       onClick(employee, e)
     }
+  }
+
+  const handleDelete = () => {
+    onDelete(employee)
   }
 
   return (
@@ -40,7 +45,7 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee, onClick }) => {
         </div>
       </div>
       <div className="employee-card-right">
-        <EmployeeCardActions />
+        <EmployeeCardActions onDelete={handleDelete}  />
         <Button type="primary" size="small" onClick={handleClick}>
           View Details
         </Button>
