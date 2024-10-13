@@ -1,19 +1,30 @@
 import React, { useEffect } from 'react'
-import { Button, List, Typography } from 'antd'
+import { Button, List, Skeleton, Typography } from 'antd'
 import useEmployees from '../../../data/hooks/useEmployees'
 import EmployeeCard from '../../components/employee-card/EmployeeCard'
 import { PlusOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import { EmployeeDto } from '../../../data/dto/EmployeeDto'
 
 import './EmployeesPage.scss'
 
 const { Title } = Typography
 
+const EmployeesPageLoading = () => <><Skeleton /><Skeleton /><Skeleton /></>
+
 const EmployeesPage: React.FC = () => {
-  const { employees, getAllEmployees } = useEmployees()
+  const { employees, getAllEmployees, loading } = useEmployees()
+  const navigate = useNavigate()
 
   useEffect(() => {
     getAllEmployees()
   }, [])
+
+  const handleViewEmployee = (employee: EmployeeDto) => {
+    navigate(`/employees/${employee.id}`)
+  }
+
+  if (loading) return <EmployeesPageLoading />
 
   return (
     <div className="employees-page">
@@ -37,7 +48,7 @@ const EmployeesPage: React.FC = () => {
           dataSource={employees}
           renderItem={(item) => (
             <List.Item>
-              <EmployeeCard employee={item} />
+              <EmployeeCard employee={item} onClick={handleViewEmployee} />
             </List.Item>
           )}
           />

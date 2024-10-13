@@ -1,7 +1,7 @@
 import EmployeeStatus from './EmployeeStatus'
 
 export class UpdateEmployeeDto {
-  id!: string
+  id?: string
   firstname?: string
   lastname?: string
   hiredAt?: Date

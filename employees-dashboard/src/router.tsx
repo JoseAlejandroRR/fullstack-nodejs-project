@@ -3,6 +3,7 @@ import EmployeesPage from './ui/pages/employees/EmployeesPage'
 import ErrorPage from './ui/pages/ErrorPage'
 import AdminLayout from './ui/layouts/admin-layout/AdminLayout'
 import DashboardPage from './ui/pages/dashboard/DashboardPage'
+import EmployeeDetailsPage from './ui/pages/employees/EmployeeDetailsPage'
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path:'/employees',
         element: <EmployeesPage />
+      },
+      {
+        path:'/employees/:employeeId',
+        element: <EmployeeDetailsPage />
       }
     ]
   },

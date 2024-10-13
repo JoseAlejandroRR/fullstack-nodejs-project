@@ -16,3 +16,5 @@ export const DateToFormatTextHuman = (date: Date): string => {
 
   return `${years}y - ${months}m - ${days}d`
 }
+
+export const avatarDefaultURL = '/assets/images/user-profile-default.jpg'

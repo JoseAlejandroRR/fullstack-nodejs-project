@@ -3,6 +3,7 @@ import EmployeesService from '../services/EmployeeAPI'
 import { EmployeeDto } from '../dto/EmployeeDto'
 import { CreateEmployeeDto } from '../dto/CreateEmployeeDto'
 import { UpdateEmployeeDto } from '../dto/UpdateEmployeeDto'
+import EmployeeStatus from '../dto/EmployeeStatus'
 
 const employeesService = new EmployeesService()
 
@@ -48,20 +49,23 @@ const useEmployees = () => {
     }
   }
 
-  const updateEmployee = async (id: string, data: UpdateEmployeeDto) => {
+  const updateEmployee = async (
+    id: string, data: UpdateEmployeeDto
+  ): Promise<EmployeeDto | null> => {
     setLoading(true)
     try {
       const updatedEmployee = await employeesService.put<any>(`/${id}`, data)
       setEmployees(
         employees.map((emp) => (emp.id === id ? updatedEmployee : emp))
       )
+      return updatedEmployee as EmployeeDto
     } catch (err) {
       setError((err as Error).message)
     } finally {
       setLoading(false)
     }
+    return null
   }
-
 
   const deleteEmployee = async (id: string) => {
     setLoading(true)

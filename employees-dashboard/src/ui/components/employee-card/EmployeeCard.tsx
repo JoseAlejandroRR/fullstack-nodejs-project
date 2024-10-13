@@ -1,24 +1,31 @@
 import React from 'react'
 import { Avatar, Button, Typography } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { UserOutlined, LeftOutlined } from '@ant-design/icons'
 import { EmployeeDto } from '../../../data/dto/EmployeeDto'
 import EmployeeCardActions from './EmployeeCardActions'
-import { DateToFormatTextHuman, DateToShortTextFormat } from '../../../data/utils'
+import { avatarDefaultURL, DateToFormatTextHuman, DateToShortTextFormat } from '../../../data/utils'
 
 import './EmployeeCard.scss'
 
 const { Text } = Typography
 
 type EmployeeCardProps = {
-  employee: EmployeeDto
+  employee: EmployeeDto,
+  onClick: Function,
 }
 
-const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
+const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee, onClick }) => {
+
+  const handleClick = (e: any) => {
+    if (onClick && typeof(onClick) === 'function') {
+      onClick(employee, e)
+    }
+  }
 
   return (
     <div className="employee-card">
       <div className="employee-card-left">
-        <Avatar size={80} src={employee.pictureURL} icon={<UserOutlined />} />
+        <Avatar size={80} src={employee.pictureURL ?? avatarDefaultURL} icon={<UserOutlined />} />
       </div>
       <div className="employee-card-center">
         <div>
@@ -34,7 +41,7 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
       </div>
       <div className="employee-card-right">
         <EmployeeCardActions />
-        <Button type="primary" size="small">
+        <Button type="primary" size="small" onClick={handleClick}>
           View Details
         </Button>
       </div>
