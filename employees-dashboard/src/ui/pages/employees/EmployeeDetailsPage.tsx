@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
-import { Avatar, Button, Col, Popconfirm, Row, Skeleton, Space, Tag, Tooltip, Typography } from 'antd'
-import { UserOutlined, LeftOutlined } from '@ant-design/icons'
+import React, { useEffect, useState } from 'react'
+import { Avatar, Button, Col, notification, Popconfirm, Row, Skeleton, Space, Tag, Tooltip, Typography } from 'antd'
+import { UserOutlined, LeftOutlined, EditOutlined } from '@ant-design/icons'
 import useEmployees from '../../../data/hooks/useEmployees'
 import { useNavigate, useParams } from 'react-router-dom'
 import { avatarDefaultURL, DateToFormatTextHuman, DateToShortTextFormat } from '../../../data/utils'
 import EmployeeStatus from '../../../data/dto/EmployeeStatus'
+import DepartmentUpdateForm from '../../components/employee-form/DepartmentUpdateForm'
+import useDepartments from '../../../data/hooks/useDepartments'
 
 import './EmployeeDetailsPage.scss'
 
@@ -15,11 +17,14 @@ export const EmployeeDetailsLoading: React.FC = () => <><Skeleton /><Skeleton />
 const EmployeeDetailsPage: React.FC = () => {
   const { employeeId } = useParams()
   const { employee, getEmployeeById, updateEmployee } = useEmployees()
+  const { departments, getAllDepartments } = useDepartments()
+  const [ showForm, setShowForm ] = useState<boolean>(false)
   const navigate = useNavigate()
   const updateEmployeeAction = employee?.status === EmployeeStatus.ACTIVE ? 'Deactivate' : 'Activate'
 
   useEffect(() => {
     getEmployeeById(String(employeeId))
+    getAllDepartments()
   }, [employeeId])
 
   const updateEmployeeStatus = async () => {
@@ -31,6 +36,19 @@ const EmployeeDetailsPage: React.FC = () => {
       }
     } catch (err) {
       console.log('[updateEmployeeStatus]: Error', err)
+    }
+  }
+
+  const handleDepartmentSelected = async (departmentId: string) => {
+    try {
+      const data = await updateEmployee(employee!.id, { departmentId })
+      if (data) {
+        getEmployeeById(employee!.id)
+        notification.success({ message: 'Department updated', placement: 'bottomRight' })
+        setShowForm(false)
+      }
+    } catch (err) {
+      console.log('[handleDepartmentSelected]: Error', err)
     }
   }
 
@@ -64,7 +82,10 @@ const EmployeeDetailsPage: React.FC = () => {
           <div style={{ textAlign:'left', marginLeft: '24px' }}>
             <Title level={2} style={{ margin: 0 }}>{employee.firstname} {employee.lastname}</Title>
             <Title level={5}>Employee ID: <Text type="secondary">{ employee.id}</Text></Title>
-            <Title level={5}>Department: <Text type="secondary">{ employee.department?.name}</Text></Title>
+            <Title level={5}>Department: <Text type="secondary" >{ employee.department?.name} <EditOutlined onClick={() => setShowForm(!showForm)} /> </Text></Title>
+            { showForm && (
+              <DepartmentUpdateForm departments={departments} departmentId={employee.departmentId} onSelected={handleDepartmentSelected} />
+            )}
             <Title level={5}>Telephone: <Text type="secondary">{ employee.phone}</Text></Title>
             <Title level={5}>Address: <Text type="secondary">{ employee.address}</Text></Title>
           </div>
@@ -78,7 +99,6 @@ const EmployeeDetailsPage: React.FC = () => {
               <Popconfirm title={`Confirm to ${updateEmployeeAction}`} placement="leftBottom"
                 onConfirm={updateEmployeeStatus}
               >
-
               {
                 employee.status === EmployeeStatus.ACTIVE ? (
                   <Button type="primary" className="btn-red">Deactivate</Button>

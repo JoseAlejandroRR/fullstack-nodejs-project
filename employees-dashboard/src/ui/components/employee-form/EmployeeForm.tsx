@@ -109,8 +109,8 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee, onDataChange }) =
       >
         <Select>
           {
-            departments && departments.map((item) => (
-              <Select.Option value={ item.id }>{ item.name }</Select.Option>
+            departments && departments.map((item, index) => (
+              <Select.Option key={index} value={ item.id }>{ item.name }</Select.Option>
             ))
           }
         </Select>
