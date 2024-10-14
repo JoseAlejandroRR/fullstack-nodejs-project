@@ -53,6 +53,7 @@ class EmployeeViewModel extends ViewModel<Employee> {
       lastname: employee.lastname,
       fullName: `${employee.firstname} ${employee.lastname}`,
       hiredAt: employee.hiredAt,
+      departmentId: employee.departmentId,
       phone: employee.phone,
       address: employee.address,
       status: employee.status,

@@ -12,8 +12,15 @@ class EmployeeService {
     @inject(ServiceProviderIds.EmployeeRepository) private employeeRepository: IEmployeeRepository
   ) {}
 
-  async getEmployeeById(id: string): Promise<Employee> {
-    const employee = await this.employeeRepository.findByKey(id)
+  async getEmployeeById(id: string, withRelations: boolean = false): Promise<Employee> {
+    const employee = await this.employeeRepository.findOne({
+      where: {
+        id
+      },
+      relations: withRelations ? {
+        department: true
+      } : {}
+    })
 
     if (!employee) {
       throw new EntityNotFoundException(Employee, id)

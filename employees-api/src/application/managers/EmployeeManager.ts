@@ -18,7 +18,7 @@ class EmployeeManager extends BaseManager {
   }
 
   async getEmployeeById(id: string): Promise<Employee> {
-    const employee = await this.employeeService.getEmployeeById(id)
+    const employee = await this.employeeService.getEmployeeById(id, true)
 
     return employee
   }
