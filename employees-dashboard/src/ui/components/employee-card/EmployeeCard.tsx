@@ -12,15 +12,22 @@ const { Text } = Typography
 type EmployeeCardProps = {
   employee: EmployeeDto,
   onClick: Function,
+  onEdit: Function,
   onDelete: Function,
 }
 
-const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee, onClick, onDelete }) => {
+const EmployeeCard: React.FC<EmployeeCardProps> = ({
+    employee, onClick, onEdit, onDelete
+  }) => {
 
   const handleClick = (e: any) => {
     if (onClick && typeof(onClick) === 'function') {
       onClick(employee, e)
     }
+  }
+
+  const handleEdit = () => {
+    onEdit(employee)
   }
 
   const handleDelete = () => {
@@ -45,7 +52,7 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee, onClick, onDelete
         </div>
       </div>
       <div className="employee-card-right">
-        <EmployeeCardActions onDelete={handleDelete}  />
+        <EmployeeCardActions onEdit={handleEdit} onDelete={handleDelete}  />
         <Button type="primary" size="small" onClick={handleClick}>
           View Details
         </Button>

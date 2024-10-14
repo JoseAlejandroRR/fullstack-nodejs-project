@@ -64,7 +64,7 @@ const EmployeeDetailsPage: React.FC = () => {
           <div style={{ textAlign:'left', marginLeft: '24px' }}>
             <Title level={2} style={{ margin: 0 }}>{employee.firstname} {employee.lastname}</Title>
             <Title level={5}>Employee ID: <Text type="secondary">{ employee.id}</Text></Title>
-            <Title level={5}>Department: <Text type="secondary">{ employee.departmentId}</Text></Title>
+            <Title level={5}>Department: <Text type="secondary">{ employee.department?.name}</Text></Title>
             <Title level={5}>Telephone: <Text type="secondary">{ employee.phone}</Text></Title>
             <Title level={5}>Address: <Text type="secondary">{ employee.address}</Text></Title>
           </div>

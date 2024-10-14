@@ -1,7 +1,13 @@
 import dayjs from 'dayjs'
 
+export const DateTimetoShortText = (date: Date) => {
+  const startDate = dayjs(date)
+
+  return startDate.format('YYYY-MM-DD')
+}
+
 export const DateToShortTextFormat = (date: Date): string => {
-  const startDate = dayjs(date);
+  const startDate = dayjs(date)
   
   return startDate.format('MMMM D, YYYY')
 }

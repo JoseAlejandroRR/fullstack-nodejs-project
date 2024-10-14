@@ -3,7 +3,7 @@ import EmployeesService from '../services/EmployeeAPI'
 import { EmployeeDto } from '../dto/EmployeeDto'
 import { CreateEmployeeDto } from '../dto/CreateEmployeeDto'
 import { UpdateEmployeeDto } from '../dto/UpdateEmployeeDto'
-import EmployeeStatus from '../dto/EmployeeStatus'
+import { DateTimetoShortText } from '../utils'
 
 const employeesService = new EmployeesService()
 
@@ -40,8 +40,14 @@ const useEmployees = () => {
   const createEmployee = async (data: CreateEmployeeDto) => {
     setLoading(true)
     try {
-      const newEmployee = await employeesService.post<any>('/', data)
+      const hiredAt = DateTimetoShortText(data.hiredAt)
+      const newEmployee = await employeesService.post<any>('', {
+        ...data,
+        hiredAt,
+      })
+
       setEmployees([...employees, newEmployee])
+      return newEmployee
     } catch (err) {
       setError((err as Error).message)
     } finally {
@@ -54,7 +60,11 @@ const useEmployees = () => {
   ): Promise<EmployeeDto | null> => {
     setLoading(true)
     try {
-      const updatedEmployee = await employeesService.put<any>(`/${id}`, data)
+      const updatedEmployee = await employeesService.put<any>(`/${id}`, {
+        ...data,
+        ...(data.hiredAt ? { hiredAt: DateTimetoShortText(data.hiredAt) } : {} )
+      })
+
       setEmployees(
         employees.map((emp) => (emp.id === id ? updatedEmployee : emp))
       )

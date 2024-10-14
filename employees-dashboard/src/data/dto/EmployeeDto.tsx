@@ -1,3 +1,4 @@
+import { DepartmentDto } from './DepartmentDto'
 import EmployeeStatus from './EmployeeStatus'
 
 export class EmployeeDto {
@@ -9,6 +10,7 @@ export class EmployeeDto {
   address?: string
   status!: EmployeeStatus
   departmentId!: string
+  department?: DepartmentDto
   pictureURL?: string
   createdAt?: Date
   updatedAt?: Date

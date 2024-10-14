@@ -1,15 +1,20 @@
 import React from 'react'
-import { Dropdown, Popconfirm, Space, Typography } from 'antd'
-import { MoreOutlined, CloseOutlined } from '@ant-design/icons'
+import { Button, Dropdown, Popconfirm, Space, Typography } from 'antd'
+import { MoreOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 
 const { Text } = Typography
 
 type MenuAction = {
+  onEdit: Function,
   onDelete: Function
 }
 
-const EmployeeCardActions: React.FC<MenuAction> = ({ onDelete }) => {
+const EmployeeCardActions: React.FC<MenuAction> = ({ onEdit, onDelete }) => {
+
+  const handleEdit = () => {
+    onEdit()
+  }
 
   const handleDelete = () => {
     onDelete()
@@ -18,12 +23,20 @@ const EmployeeCardActions: React.FC<MenuAction> = ({ onDelete }) => {
   const items: MenuProps['items'] = [
     {
       icon: <>
+        <EditOutlined />
+        <Text style={{ paddingLeft: '10px' }}>Edit</Text>
+      </>,
+      key: '0',
+      onClick: handleEdit,
+    },
+    {
+      icon: <>
         <Popconfirm title={`Confirm to Delete`} onConfirm={handleDelete}>
           <CloseOutlined />
           <Text style={{ paddingLeft: '10px' }}>Delete</Text>
         </Popconfirm>
       </>,
-      key: '0',
+      key: '1',
     },
   ]
 
