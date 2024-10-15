@@ -1,18 +1,22 @@
 
 import { useState } from 'react'
-import { Layout, Menu, Button, theme } from 'antd'
+import { Layout, Menu, Button, theme, Tooltip } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   HomeOutlined,
-  UsergroupAddOutlined
+  UsergroupAddOutlined,
+  LogoutOutlined
 } from '@ant-design/icons'
 import { Outlet, useNavigate } from 'react-router-dom'
+import useAuth from '../../../data/hooks/useAuth'
+import { isAuthActive } from '../../../data/utils'
 
 const { Header, Sider, Content } = Layout
 
 export default function AdminLayout() {
   const [collapsed, setCollapsed] = useState(false)
+  const { userLogout } = useAuth()
   const {
     token: { colorBgContainer },
   } = theme.useToken()
@@ -21,6 +25,11 @@ export default function AdminLayout() {
 
   const goTo = (url: string) => {
     navigate(url)
+  }
+
+  const handleLogout = () => {
+    userLogout()
+    navigate('/login')
   }
 
   return (
@@ -65,7 +74,13 @@ export default function AdminLayout() {
               }}
             />
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              
+              {
+                isAuthActive() && (
+                  <Tooltip title="Logout">
+                  <Button onClick={handleLogout} type="link" icon={<LogoutOutlined />}></Button>
+                </Tooltip>
+                )
+              }
             </div>
           </div>
         </Header>

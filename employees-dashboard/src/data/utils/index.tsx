@@ -32,4 +32,6 @@ export const DateToTextRelative = (date: Date): string => {
   return startDate.fromNow()
 }
 
+export const isAuthActive = (): boolean => import.meta.env.VITE_AUTH_LAYER_ACTIVE === 'true'
+
 export const avatarDefaultURL = '/assets/images/user-profile-default.jpg'

@@ -2,7 +2,7 @@ import { DepartmentDto } from './DepartmentDto'
 import { EmployeeDto } from './EmployeeDto'
 
 export class EmployeeAssignmentDto {
-  id!: number
+  id!: string
   employeeId!: number
   employee?: EmployeeDto
   departmentId!: string

@@ -1,0 +1,27 @@
+.login-page {
+  background-color: #eee;
+  height: 100%;
+
+  .ant-form {
+    background-color: #d4d4d4;
+    box-shadow: 0px 0px 10px 0px #666;
+    margin: 100px auto;
+    padding: 20px;
+    
+    .ant-typography {
+      color: #323232;
+    }
+
+    .ant-input  {
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      font-size: 16px;
+      color:#333;
+      margin-bottom: 12px;
+      padding: 8px 10px;
+    }
+
+    .error-auth {
+    }
+  }
+}

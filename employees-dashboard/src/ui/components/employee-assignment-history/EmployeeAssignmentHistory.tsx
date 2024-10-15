@@ -12,6 +12,11 @@ const EmployeeAssignmentHistory: React.FC<EmployeeAssignmentHistoryProps> = ({
   assignments
 }) => {
 
+  const dataSource = assignments.map((assignment: EmployeeAssignmentDto) => ({
+    ...assignment,
+    key: assignment.id,
+  }))
+
   const columns = [
     {
       title: 'Department',
@@ -58,7 +63,7 @@ const EmployeeAssignmentHistory: React.FC<EmployeeAssignmentHistoryProps> = ({
   ]
 
   return (
-    <Table dataSource={assignments} columns={columns} style={{ width: '100%' }}
+    <Table dataSource={dataSource} columns={columns} style={{ width: '100%' }}
       pagination={{ pageSize: 20 }}  />
   )
 }
