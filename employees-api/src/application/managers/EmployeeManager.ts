@@ -7,6 +7,7 @@ import { UpdateEmployeeDto } from '../dto/employees/UpdateEmployee'
 import EmployeeStatus from '@/domain/enums/EmployeeStatus'
 import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
 import IDatabase from '@/domain/database/IDatabase'
+import { EmployeeAssignment } from '@/domain/models/EmployeeAssignment'
 @injectable()
 class EmployeeManager extends BaseManager {
 
@@ -58,6 +59,12 @@ class EmployeeManager extends BaseManager {
     const isDelete = await this.employeeService.deleteEmployee(id)
 
     return isDelete
+  }
+
+  async getAssignmentsByEmployee(employeeId:number): Promise<EmployeeAssignment[]> {
+    const employee = await this.getEmployeeById(employeeId)
+
+    return await this.employeeService.getAssignmentsByEmployee(employee)
   }
 }
 

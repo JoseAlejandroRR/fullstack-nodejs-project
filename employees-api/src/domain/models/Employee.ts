@@ -3,6 +3,7 @@ import { Department } from './Department'
 import { CreateEmployeeDto } from '@/application/dto/employees/CreateEmployee'
 import { UpdateEmployeeDto } from '@/application/dto/employees/UpdateEmployee'
 import EmployeeStatus from '../enums/EmployeeStatus'
+import { EmployeeAssignment } from './EmployeeAssignment'
 
 export const TABLE_EMPLOYEES = 'employees'
 @Entity(TABLE_EMPLOYEES)
@@ -86,4 +87,13 @@ export class Employee extends BaseEntity {
     }
   }
 
+  assignTo(department: Department): EmployeeAssignment {
+    const assignment = new EmployeeAssignment()
+    assignment.employeeId = this.id
+    assignment.departmentId = department.id
+    assignment.startDate = new Date()
+    assignment.isActive = true
+
+    return assignment
+  }
 }

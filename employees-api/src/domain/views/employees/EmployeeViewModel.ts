@@ -9,7 +9,7 @@ import { Employee } from '@/domain/models/Employee'
  * components:
  *   schemas:
  *     EmployeeViewModel:
- *       description: Emploree Object Structure
+ *       description: Employee Object Structure
  *       properties:
  *         id:
  *           type: number

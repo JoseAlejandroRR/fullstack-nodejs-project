@@ -8,6 +8,7 @@ import MySqlDepartmentRepository from './repositories/MySqlDepartmentRepository'
 import { IEventBus } from '@/domain/IEventBus'
 import { LocalEventBus } from './providers/LocalEventBus'
 import { EmployeeEventHandler } from '@/application/events/EmployeeEventHandler'
+import MysqlEmployeeAssignmentRepository from './repositories/MysqlEmployeeAssignmentRepository'
 
 class ApplicationContext {
   static initialize(): void {
@@ -21,6 +22,7 @@ class ApplicationContext {
     container.register(ServiceProviderIds.UserRepository, { useClass: MysqlUserRepository });
     container.register(ServiceProviderIds.EmployeeRepository, { useClass: MySqlEmployeeRepository });
     container.register(ServiceProviderIds.DepartmentRepository, { useClass: MySqlDepartmentRepository });
+    container.register(ServiceProviderIds.EmployeeAssignmentRepository, { useClass: MysqlEmployeeAssignmentRepository });
 
     this.registerEvents()
   }

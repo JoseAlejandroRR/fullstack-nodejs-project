@@ -7,11 +7,14 @@ import { UpdateEmployeeDto } from '../dto/employees/UpdateEmployee'
 import EntityNotFoundException from '@/domain/exceptions/EntityNotFoundException'
 import { IEventBus } from '@/domain/IEventBus'
 import { EventType } from '@/domain/EventType'
+import IEmployeeAssignmentRepository from '@/domain/repositories/IEmployeeAssignmentRepository'
+import { EmployeeAssignment } from '@/domain/models/EmployeeAssignment'
 @injectable()
 class EmployeeService {
 
   constructor(
     @inject(ServiceProviderIds.EmployeeRepository) private employeeRepository: IEmployeeRepository,
+    @inject(ServiceProviderIds.EmployeeAssignmentRepository) private assignmentRepository: IEmployeeAssignmentRepository,
     @inject(ServiceProviderIds.EventBus) private eventBus: IEventBus
   ) {}
 
@@ -70,6 +73,23 @@ class EmployeeService {
     })
 
     return employees
+  }
+
+  async getAssignmentsByEmployee(employee:Employee): Promise<EmployeeAssignment[]> {
+    const assignments = await this.assignmentRepository.find({
+      where: {
+        employeeId: employee.id
+      },
+      relations: {
+        department: true,
+      },
+      order: {
+        startDate: 'DESC',
+        endDate: 'DESC',
+      }
+    })
+
+    return assignments
   }
 }
 

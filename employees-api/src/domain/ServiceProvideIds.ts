@@ -6,4 +6,5 @@ export enum ServiceProviderIds {
   UserRepository = 'UserRepository',
   DepartmentRepository = 'DepartmentRepository',
   EmployeeRepository = 'EmployeeRepository',
+  EmployeeAssignmentRepository = 'EmployeeAssignmentRepository',
 }

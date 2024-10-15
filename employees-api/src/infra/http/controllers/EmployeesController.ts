@@ -6,6 +6,7 @@ import { CreateEmployeeDto } from '@/application/dto/employees/CreateEmployee'
 import ViewModel from '@/domain/views/ViewModel'
 import EmployeeViewModel from '@/domain/views/employees/EmployeeViewModel'
 import { UpdateEmployeeDto } from '@/application/dto/employees/UpdateEmployee'
+import EmployeeAssignmentViewModel from '@/domain/views/employees/EmployeeAssignmentViewModel'
 @injectable()
 class EmployeesController extends BaseController {
 
@@ -53,6 +54,16 @@ class EmployeesController extends BaseController {
     const employee = await this.employeeManager.deleteEmployee(Number(employeeId))
 
     return ctx.text('', employee ? 200 : 500)
+  }
+
+  async getEmployeeAssignments(ctx: Context) {
+    const { employeeId } = ctx.req.param()
+
+    const assignments = await this.employeeManager.getAssignmentsByEmployee(
+      Number(employeeId)
+    )
+
+    return ctx.json(ViewModel.createMany(EmployeeAssignmentViewModel, assignments))
   }
 
 }
