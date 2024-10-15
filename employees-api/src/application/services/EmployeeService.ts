@@ -5,11 +5,14 @@ import { ServiceProviderIds } from '@/domain/ServiceProvideIds'
 import IEmployeeRepository from '@/domain/repositories/IEmployeeRepository'
 import { UpdateEmployeeDto } from '../dto/employees/UpdateEmployee'
 import EntityNotFoundException from '@/domain/exceptions/EntityNotFoundException'
+import { IEventBus } from '@/domain/IEventBus'
+import { EventType } from '@/domain/EventType'
 @injectable()
 class EmployeeService {
 
   constructor(
-    @inject(ServiceProviderIds.EmployeeRepository) private employeeRepository: IEmployeeRepository
+    @inject(ServiceProviderIds.EmployeeRepository) private employeeRepository: IEmployeeRepository,
+    @inject(ServiceProviderIds.EventBus) private eventBus: IEventBus
   ) {}
 
   async getEmployeeById(id: number, withRelations: boolean = false): Promise<Employee> {
@@ -36,11 +39,20 @@ class EmployeeService {
   }
 
   async updateEmployee(id: number, data: UpdateEmployeeDto): Promise<any> {
-    const employee = await this.getEmployeeById(id)
+    let employee = await this.getEmployeeById(id)
+    const beforeState = Object.assign({}, employee)
 
     employee.update(data)
 
-    return await this.employeeRepository.update(employee)
+    employee = await this.employeeRepository.update(employee)
+
+    this.eventBus.publish({
+      name: EventType.Employee.Updated,
+      payload: { current: employee, beforeState },
+      timestamp: new Date()
+    })
+
+    return employee
   }
 
   async deleteEmployee(id: number): Promise<boolean> {
