@@ -7,6 +7,7 @@ import { avatarDefaultURL, DateToFormatTextHuman, DateToShortTextFormat } from '
 import EmployeeStatus from '../../../data/dto/EmployeeStatus'
 import DepartmentUpdateForm from '../../components/employee-form/DepartmentUpdateForm'
 import useDepartments from '../../../data/hooks/useDepartments'
+import EmployeeAssignmentHistory from '../../components/employee-assignment-history/EmployeeAssignmentHistory'
 
 import './EmployeeDetailsPage.scss'
 
@@ -16,15 +17,21 @@ export const EmployeeDetailsLoading: React.FC = () => <><Skeleton /><Skeleton />
 
 const EmployeeDetailsPage: React.FC = () => {
   const { employeeId } = useParams()
-  const { employee, getEmployeeById, updateEmployee } = useEmployees()
+  const { employee, assignments, getEmployeeById, updateEmployee, getAssignmentByEmployeeId } = useEmployees()
   const { departments, getAllDepartments } = useDepartments()
   const [ showForm, setShowForm ] = useState<boolean>(false)
   const navigate = useNavigate()
   const updateEmployeeAction = employee?.status === EmployeeStatus.ACTIVE ? 'Deactivate' : 'Activate'
 
+
+  if (isNaN(Number(employeeId))) {
+    navigate('/employees')
+  }
+
   useEffect(() => {
-    getEmployeeById(String(employeeId))
+    getEmployeeById(Number(employeeId))
     getAllDepartments()
+    getAssignmentByEmployeeId(Number(employeeId))
   }, [employeeId])
 
   const updateEmployeeStatus = async () => {
@@ -44,6 +51,9 @@ const EmployeeDetailsPage: React.FC = () => {
       const data = await updateEmployee(employee!.id, { departmentId })
       if (data) {
         getEmployeeById(employee!.id)
+        setTimeout(() => {
+          getAssignmentByEmployeeId(Number(employee!.id))
+        }, 2000)
         notification.success({ message: 'Department updated', placement: 'bottomRight' })
         setShowForm(false)
       }
@@ -109,6 +119,11 @@ const EmployeeDetailsPage: React.FC = () => {
               </Popconfirm>
             </Space>
           </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col flex={1}>
+          <EmployeeAssignmentHistory assignments={assignments} />
         </Col>
       </Row>
     </div>

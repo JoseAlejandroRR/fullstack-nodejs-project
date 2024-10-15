@@ -4,12 +4,14 @@ import { EmployeeDto } from '../dto/EmployeeDto'
 import { CreateEmployeeDto } from '../dto/CreateEmployeeDto'
 import { UpdateEmployeeDto } from '../dto/UpdateEmployeeDto'
 import { DateTimetoShortText } from '../utils'
+import { EmployeeAssignmentDto } from '../dto/EmployeeAssignment'
 
 const employeesService = new EmployeesService()
 
 const useEmployees = () => {
   const [employees, setEmployees] = useState<EmployeeDto[]>([])
   const [employee, setEmployee] = useState<EmployeeDto | null>(null)
+  const [assignments, setAssignments] = useState<EmployeeAssignmentDto[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -25,7 +27,7 @@ const useEmployees = () => {
     }
   }
 
-  const getEmployeeById = async (id: string) => {
+  const getEmployeeById = async (id: number) => {
     setLoading(true)
     try {
       const data = await employeesService.get<any>(`/${id}`)
@@ -92,9 +94,22 @@ const useEmployees = () => {
     }
   }
 
+  const getAssignmentByEmployeeId = async (id: number) => {
+    setLoading(true)
+    try {
+      const data = await employeesService.getAssignmentByEmployeeId(id)
+      setAssignments(data)
+    } catch (err) {
+      setError((err as Error).message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return {
     employees,
     employee,
+    assignments,
     loading,
     error,
     getAllEmployees,
@@ -102,6 +117,7 @@ const useEmployees = () => {
     createEmployee,
     updateEmployee,
     deleteEmployee,
+    getAssignmentByEmployeeId,
   }
 }
 

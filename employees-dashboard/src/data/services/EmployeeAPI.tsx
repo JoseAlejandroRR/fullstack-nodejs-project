@@ -1,4 +1,5 @@
 import { CreateEmployeeDto } from '../dto/CreateEmployeeDto'
+import { EmployeeAssignmentDto } from '../dto/EmployeeAssignment'
 import { EmployeeDto } from '../dto/EmployeeDto'
 import { UpdateEmployeeDto } from '../dto/UpdateEmployeeDto'
 import BackendService from './BackendService'
@@ -27,6 +28,10 @@ class EmployeesService extends BackendService {
 
   async deleteById(id: number): Promise<void> {
     return this.delete<void>(`/${id}`)
+  }
+
+  async getAssignmentByEmployeeId(id: number): Promise<EmployeeAssignmentDto[]> {
+    return this.get<EmployeeAssignmentDto[]>(`/${id}/assignments`)
   }
 }
 

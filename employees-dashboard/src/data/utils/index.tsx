@@ -1,4 +1,7 @@
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 export const DateTimetoShortText = (date: Date) => {
   const startDate = dayjs(date)
@@ -21,6 +24,12 @@ export const DateToFormatTextHuman = (date: Date): string => {
   const days = now.diff(startDate.add(years, 'year').add(months, 'month'), 'day');
 
   return `${years}y - ${months}m - ${days}d`
+}
+
+export const DateToTextRelative = (date: Date): string => {
+  const startDate = dayjs(date)
+
+  return startDate.fromNow()
 }
 
 export const avatarDefaultURL = '/assets/images/user-profile-default.jpg'
