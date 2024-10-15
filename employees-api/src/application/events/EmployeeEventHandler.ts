@@ -34,6 +34,9 @@ export class EmployeeEventHandler extends EventHandler  {
             where: {
               employeeId: employee.id,
               departmentId: beforeState.departmentId,
+            },
+            order: {
+              updatedAt: 'DESC'
             }
           })
 
