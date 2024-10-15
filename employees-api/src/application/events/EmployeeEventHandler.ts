@@ -22,6 +22,19 @@ export class EmployeeEventHandler extends EventHandler  {
   protected subscribe(eventBus: IEventBus): void {
 
     this.eventBus.subscribe(
+      EventType.Employee.Created,
+      async (event: IEvent) => {
+        const { payload } = event
+        const employee: Employee = payload.current
+
+        const department = await this.departmentRepository.findByKey(employee.departmentId!)
+        if (!department) return
+
+        const assignment = employee.assignTo(department)
+        await this.assignmentRepository.create(assignment)
+    })
+
+    this.eventBus.subscribe(
       EventType.Employee.Updated,
       async (event: IEvent) => {
         const { payload } = event

@@ -38,8 +38,6 @@ class EmployeeManager extends BaseManager {
     } catch (err) {
       await this.database.rollback()
       throw err
-    } finally {
-      await this.database.release()
     }
   }
 

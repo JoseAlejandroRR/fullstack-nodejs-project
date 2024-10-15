@@ -36,9 +36,17 @@ class EmployeeService {
   }
 
   async createEmployee(data: CreateEmployeeDto): Promise<Employee> {
-    const employee = Employee.factory(data)
+    let employee = Employee.factory(data)
 
-    return this.employeeRepository.create(employee)
+    employee = await this.employeeRepository.create(employee)
+
+    this.eventBus.publish({
+      name: EventType.Employee.Created,
+      payload: { current: employee },
+      timestamp: new Date()
+    })
+
+    return employee
   }
 
   async updateEmployee(id: number, data: UpdateEmployeeDto): Promise<any> {
