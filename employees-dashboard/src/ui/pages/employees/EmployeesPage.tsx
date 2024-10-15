@@ -47,8 +47,11 @@ const EmployeesPage: React.FC = () => {
     setShowForm(true)
   }
 
-  const handleDataChanged = async () => {
-    setHasChanges(true)
+  const handleDataChanged = async (employee: EmployeeDto | null) => {
+    if (employee) {
+      setCurrentEmployee(employee)
+      setHasChanges(true)
+    }
   }
 
   const handleDeleteEmploye = async (employee: EmployeeDto) => {

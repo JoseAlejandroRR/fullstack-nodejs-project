@@ -37,7 +37,9 @@ const useEmployees = () => {
     }
   }
 
-  const createEmployee = async (data: CreateEmployeeDto) => {
+  const createEmployee = async (
+    data: CreateEmployeeDto
+  ): Promise<EmployeeDto | null> => {
     setLoading(true)
     try {
       const hiredAt = DateTimetoShortText(data.hiredAt)
@@ -47,16 +49,17 @@ const useEmployees = () => {
       })
 
       setEmployees([...employees, newEmployee])
-      return newEmployee
+      return newEmployee as EmployeeDto
     } catch (err) {
       setError((err as Error).message)
     } finally {
       setLoading(false)
     }
+    return null
   }
 
   const updateEmployee = async (
-    id: string, data: UpdateEmployeeDto
+    id: number, data: UpdateEmployeeDto
   ): Promise<EmployeeDto | null> => {
     setLoading(true)
     try {
@@ -77,7 +80,7 @@ const useEmployees = () => {
     return null
   }
 
-  const deleteEmployee = async (id: string) => {
+  const deleteEmployee = async (id: number) => {
     setLoading(true)
     try {
       await employeesService.delete(`/${id}`)

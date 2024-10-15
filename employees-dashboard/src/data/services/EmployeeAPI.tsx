@@ -13,7 +13,7 @@ class EmployeesService extends BackendService {
     return this.get<EmployeeDto[]>('')
   }
 
-  async getById(id: string): Promise<EmployeeDto> {
+  async getById(id: number): Promise<EmployeeDto> {
     return this.get<EmployeeDto>(`/${id}`)
   }
 
@@ -21,11 +21,11 @@ class EmployeesService extends BackendService {
     return this.post<EmployeeDto>('/', input)
   }
 
-  async updateById(id: string, input: Partial<UpdateEmployeeDto>): Promise<EmployeeDto> {
+  async updateById(id: number, input: Partial<UpdateEmployeeDto>): Promise<EmployeeDto> {
     return this.put<EmployeeDto>(`/${id}`, input)
   }
 
-  async deleteById(id: string): Promise<void> {
+  async deleteById(id: number): Promise<void> {
     return this.delete<void>(`/${id}`)
   }
 }
