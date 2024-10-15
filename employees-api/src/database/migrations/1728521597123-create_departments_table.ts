@@ -1,5 +1,5 @@
-import { TABLE_DEPARTMENTS } from "./../../domain/models/Department"
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { TABLE_DEPARTMENTS } from './../../domain/models/Department'
+import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 export class CreateDepartmentsTable1728521597123 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {

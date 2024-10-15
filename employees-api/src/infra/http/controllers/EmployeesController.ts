@@ -20,14 +20,14 @@ class EmployeesController extends BaseController {
 
     const employee = await this.employeeManager.createEmployee(data)
 
-    return ctx.json(ViewModel.createOne(EmployeeViewModel, employee))
+    return ctx.json(ViewModel.createOne(EmployeeViewModel, employee), 201)
   }
 
   async updateEmployee(ctx: Context) {
     const { employeeId } = ctx.req.param()
     const data: UpdateEmployeeDto = await ctx.req.json()
 
-    const employee = await this.employeeManager.updateEmployee(employeeId, data)
+    const employee = await this.employeeManager.updateEmployee(Number(employeeId), data)
 
     return ctx.json(ViewModel.createOne(EmployeeViewModel, employee))
   }
@@ -35,7 +35,7 @@ class EmployeesController extends BaseController {
   async getEmployee(ctx: Context) {
     const { employeeId } = ctx.req.param()
 
-    const employee = await this.employeeManager.getEmployeeById(employeeId)
+    const employee = await this.employeeManager.getEmployeeById(Number(employeeId))
 
     return ctx.json(ViewModel.createOne(EmployeeViewModel, employee))
   }
@@ -50,7 +50,7 @@ class EmployeesController extends BaseController {
   async deleteEmployee(ctx: Context) {
     const { employeeId } = ctx.req.param()
 
-    const employee = await this.employeeManager.deleteEmployee(employeeId)
+    const employee = await this.employeeManager.deleteEmployee(Number(employeeId))
 
     return ctx.text('', employee ? 200 : 500)
   }

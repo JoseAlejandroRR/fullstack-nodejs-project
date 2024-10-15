@@ -1,5 +1,5 @@
-import { User } from './../../../domain/models/User';
-import { setSeederFactory } from 'typeorm-extension';
+import { User } from './../../../domain/models/User'
+import { setSeederFactory } from 'typeorm-extension'
 
 export const UserFactory = setSeederFactory(User, (faker) => {
   const user = new User()
@@ -7,5 +7,6 @@ export const UserFactory = setSeederFactory(User, (faker) => {
   user.lastname = faker.person.lastName();
   user.email = faker.internet.email();
   user.password = faker.internet.password();
+
   return user
 })

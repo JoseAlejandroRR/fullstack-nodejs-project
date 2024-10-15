@@ -2,7 +2,7 @@ import { Employee } from './../../domain/models/Employee'
 import { DataSource } from 'typeorm'
 import { Seeder, SeederFactoryManager } from 'typeorm-extension'
 export class SeedEmployees1728675373034 implements Seeder {
-  track = false;
+  track = false
 
   public async run(
       dataSource: DataSource,

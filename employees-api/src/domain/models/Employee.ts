@@ -7,8 +7,8 @@ import EmployeeStatus from '../enums/EmployeeStatus'
 export const TABLE_EMPLOYEES = 'employees'
 @Entity(TABLE_EMPLOYEES)
 export class Employee extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string
+  @PrimaryGeneratedColumn()
+  id!: number
 
   @Column({ type: 'varchar' })
   firstname!: string

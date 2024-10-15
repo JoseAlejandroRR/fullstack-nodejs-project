@@ -1,7 +1,7 @@
-import { DEPARTMENTS_DATA_FAKE } from '../1728622371990-seed_departments';
-import EmployeeStatus from './../../../domain/enums/EmployeeStatus';
-import { Employee } from './../../../domain/models/Employee';
-import { setSeederFactory } from 'typeorm-extension';
+import { setSeederFactory } from 'typeorm-extension'
+import { DEPARTMENTS_DATA_FAKE } from '../1728622371990-seed_departments'
+import EmployeeStatus from './../../../domain/enums/EmployeeStatus'
+import { Employee } from './../../../domain/models/Employee'
 
 export const EmployeeFactory = setSeederFactory(Employee, (faker) => {
   const employee = new Employee()

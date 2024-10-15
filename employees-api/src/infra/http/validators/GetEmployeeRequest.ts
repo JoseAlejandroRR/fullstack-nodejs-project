@@ -1,7 +1,7 @@
 import { MiddlewareHandler } from 'hono'
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
-import { RequireUUID } from '.'
+import { RequireInteger } from '.'
 
 /**
  * @swagger
@@ -20,8 +20,8 @@ import { RequireUUID } from '.'
  *         required: true
  *       - in: path
  *         name: id
- *         type: string
- *         example:  a8d56d51-1917-40ca-aa56-38a7acb2321b
+ *         type: number
+ *         example:  1000
  *         required: true
  *     responses:
  *       200:
@@ -40,7 +40,7 @@ import { RequireUUID } from '.'
 
 const GetEmployeeRequest: MiddlewareHandler[] = [
   zValidator('param', z.object({
-    employeeId: RequireUUID(),
+    employeeId: RequireInteger(),
   }))
 ]
 

@@ -17,7 +17,7 @@ class EmployeeManager extends BaseManager {
     super()
   }
 
-  async getEmployeeById(id: string): Promise<Employee> {
+  async getEmployeeById(id: number): Promise<Employee> {
     const employee = await this.employeeService.getEmployeeById(id, true)
 
     return employee
@@ -42,7 +42,7 @@ class EmployeeManager extends BaseManager {
     }
   }
 
-  async updateEmployee(id: string, data: UpdateEmployeeDto): Promise<Employee> {
+  async updateEmployee(id: number, data: UpdateEmployeeDto): Promise<Employee> {
     const employee = await this.employeeService.updateEmployee(id, data)
 
     return employee
@@ -54,7 +54,7 @@ class EmployeeManager extends BaseManager {
     return employees
   }
 
-  async deleteEmployee(id: string): Promise<boolean> {
+  async deleteEmployee(id: number): Promise<boolean> {
     const isDelete = await this.employeeService.deleteEmployee(id)
 
     return isDelete

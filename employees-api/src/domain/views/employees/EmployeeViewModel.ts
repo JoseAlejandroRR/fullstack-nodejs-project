@@ -12,8 +12,8 @@ import { Employee } from '@/domain/models/Employee'
  *       description: Emploree Object Structure
  *       properties:
  *         id:
- *           type: string
- *           example: a8d56d51-1917-40ca-aa56-38a7acb2321b
+ *           type: number
+ *           example: 1000
  *         firstname:
  *           type: string
  *           example: John

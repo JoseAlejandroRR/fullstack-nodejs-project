@@ -1,6 +1,6 @@
-import { Department } from './../../domain/models/Department';
-import { DataSource } from 'typeorm';
-import { Seeder, SeederFactoryManager } from 'typeorm-extension';
+import { DataSource } from 'typeorm'
+import { Department } from './../../domain/models/Department'
+import { Seeder, SeederFactoryManager } from 'typeorm-extension'
 
 export const DEPARTMENTS_DATA_FAKE = [
   {

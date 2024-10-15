@@ -1,6 +1,6 @@
+import { DataSource } from 'typeorm'
 import UserRole from './../../domain/enums/UserRole'
 import { User } from './../../domain/models/User'
-import { DataSource } from 'typeorm'
 import { Seeder, SeederFactoryManager } from 'typeorm-extension'
 export class SeedUsers1728526587752 implements Seeder {
   track = false

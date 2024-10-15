@@ -1,5 +1,4 @@
-import { z } from 'zod';
-import { validate as isUuid } from 'uuid';
+import { z } from 'zod'
 
 export const RequireString = (minLength: number = 1, maxLength = 200) => z.string().min(minLength).max(maxLength)
 

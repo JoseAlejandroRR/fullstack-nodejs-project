@@ -12,7 +12,7 @@ class EmployeeService {
     @inject(ServiceProviderIds.EmployeeRepository) private employeeRepository: IEmployeeRepository
   ) {}
 
-  async getEmployeeById(id: string, withRelations: boolean = false): Promise<Employee> {
+  async getEmployeeById(id: number, withRelations: boolean = false): Promise<Employee> {
     const employee = await this.employeeRepository.findOne({
       where: {
         id
@@ -23,7 +23,7 @@ class EmployeeService {
     })
 
     if (!employee) {
-      throw new EntityNotFoundException(Employee, id)
+      throw new EntityNotFoundException(Employee, String(id))
     }
 
     return employee
@@ -35,7 +35,7 @@ class EmployeeService {
     return this.employeeRepository.create(employee)
   }
 
-  async updateEmployee(id: string, data: UpdateEmployeeDto): Promise<any> {
+  async updateEmployee(id: number, data: UpdateEmployeeDto): Promise<any> {
     const employee = await this.getEmployeeById(id)
 
     employee.update(data)
@@ -43,7 +43,7 @@ class EmployeeService {
     return await this.employeeRepository.update(employee)
   }
 
-  async deleteEmployee(id: string): Promise<boolean> {
+  async deleteEmployee(id: number): Promise<boolean> {
     const employee = await this.getEmployeeById(id)
 
     return await this.employeeRepository.delete(employee)
