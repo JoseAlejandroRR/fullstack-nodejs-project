@@ -11,7 +11,7 @@ import ApplicationContext from './infra/ApplicationContext'
 import { container } from 'tsyringe'
 import IDatabase from './domain/database/IDatabase'
 import { ServiceProviderIds } from './domain/ServiceProvideIds'
-import { swaggerDoc } from './infra/http/swagger';
+import { swaggerDoc } from './infra/http/swagger'
 import { swaggerUI} from '@hono/swagger-ui'
 import { Context } from 'hono'
 

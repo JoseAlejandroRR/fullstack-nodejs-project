@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./employees-dashboard  # Ruta a la carpeta con el Dockerfile de frontend
+      dockerfile: Dockerfile         # Nombre del archivo Dockerfile (opcional si es 'Dockerfile')
+    ports:
+      - "8000:3000"                  # El frontend se servirá en el puerto 8000
+    depends_on:
+      - backend                      # El frontend depende del backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./employees-api         # Ruta a la carpeta con el Dockerfile de backend
+      dockerfile: Dockerfile          # Nombre del archivo Dockerfile (opcional si es 'Dockerfile')
+    ports:
+      - "8787:8787"                   # Puerto donde escucha el backend
+    environment:
+      - DB_HOST=db                    # La base de datos será accesible a través del nombre del servicio 'db'
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=my-secret-pw
+      - DB_NAME=employee-management
+      - DB_LOG=false
+
+    depends_on:
+      - db                            # El backend depende de la base de datos
+    networks:
+      - app-network
+
+  db:
+    image: mariadb:latest             # Imagen oficial de MariaDB
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=employee-management
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=my-secret-pw
+    ports:
+      - "3307:3306"                   # Exponer el puerto para que el backend pueda acceder a MariaDB
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+# Red para conectar todos los servicios
+networks:
+  app-network:
+
+# Persistencia de datos de la base de datos
+volumes:
+  db-data:
