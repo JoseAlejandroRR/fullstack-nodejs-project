@@ -1,4 +1,4 @@
-itFROM node:20
+FROM node:20
 
 WORKDIR /usr/src
 

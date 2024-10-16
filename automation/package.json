@@ -1,0 +1,19 @@
+{
+  "name": "e2e-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "HOST=http://localhost:8000 node ./node_modules/playwright/cli.js test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^22.7.5"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.15"
+  }
+}
