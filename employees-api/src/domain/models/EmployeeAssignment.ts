@@ -29,7 +29,7 @@ export class EmployeeAssignment extends BaseEntity {
   @Column({ name:'end_date', type: 'datetime', nullable: true })
   endDate?: Date
 
-  @Column({ name:'active', default: false })
+  @Column({ name:'active', type: 'boolean', default: false })
   isActive!: boolean
 
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })

@@ -1,8 +1,9 @@
 import { IRepository } from '@/domain/repositories/IRepository'
 import { SearchRepository } from '@/domain/repositories/ISearchRepository'
+import { BaseEntity } from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
 
-class MockRepository<T extends { id?: string, createdAt?: Date, updatedAt?: Date }>
+class MockRepository<T extends BaseEntity>
   implements IRepository<T> {
 
   private items: T[] = []
