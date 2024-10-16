@@ -13,7 +13,7 @@
     "migration:rollback": "NODE_ENV=development ts-node-dev -r dotenv/config ./node_modules/typeorm/cli.js migration:revert -d ./src/infra/database/MysqlConfig.ts",
     "seed:create": "ts-node-dev ./node_modules/typeorm-extension/bin/cli.cjs seed:create -n ",
     "seed:run": "ts-node ./src/database/seeds/seeder.ts",
-    "test": "jest ./test/"
+    "test": "jest"
   },
   "keywords": [
     "typescript",
