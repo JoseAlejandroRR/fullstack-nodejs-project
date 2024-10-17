@@ -1,9 +1,10 @@
 import React from 'react'
-import { Avatar, Button, Typography } from 'antd'
+import { Avatar, Button, Tag, Typography } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { EmployeeDto } from '../../../data/dto/EmployeeDto'
 import EmployeeCardActions from './EmployeeCardActions'
 import { avatarDefaultURL, DateToFormatTextHuman, DateToShortTextFormat } from '../../../data/utils'
+import EmployeeStatus from '../../../data/dto/EmployeeStatus'
 
 import './EmployeeCard.scss'
 
@@ -38,15 +39,25 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({
     <div className="employee-card">
       <div className="employee-card-left">
         <Avatar size={80} src={employee.pictureURL ?? avatarDefaultURL} icon={<UserOutlined />} />
+        {
+          employee.status === EmployeeStatus.INACTIVE && (
+            <Tag color="magenta">Inactive</Tag>
+        )}
       </div>
       <div className="employee-card-center">
         <div>
-          <Text strong>{employee.firstname} {employee.lastname}</Text>
+          <Text strong>
+            {employee.firstname} {employee.lastname}
+            { employee?.department?.name && (
+              <Text type="secondary" className="department-name">
+                ({employee.department.name})
+              </Text>
+            )} </Text>
         </div>
         <div>
-          <Text type="secondary">Hire Date</Text>
+          <Text >Hire Date</Text>
           <br />
-          <Text>
+          <Text type="secondary">
             { DateToShortTextFormat(employee.hiredAt) } ({ DateToFormatTextHuman(employee.hiredAt) })
           </Text>
         </div>

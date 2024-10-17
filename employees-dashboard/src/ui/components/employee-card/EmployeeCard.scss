@@ -11,6 +11,14 @@
   .employee-card-left {
     flex: 0 0 80px;
     margin-right: 16px;
+    position: relative;
+
+    .ant-tag {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .employee-card-center {
@@ -19,6 +27,11 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: left;
+
+    .ant-typography-secondary.department-name {
+      font-weight: normal;
+      padding-left: 5px;
+    }
   }
 
   .employee-card-right {

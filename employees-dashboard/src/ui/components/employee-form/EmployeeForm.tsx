@@ -5,7 +5,7 @@ import { CreateEmployeeDto } from '../../../data/dto/CreateEmployeeDto'
 import useEmployees from '../../../data/hooks/useEmployees'
 import { EmployeeDto } from '../../../data/dto/EmployeeDto'
 import useDepartments from '../../../data/hooks/useDepartments'
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 
 type FieldType = CreateEmployeeDto
 
@@ -68,6 +68,8 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee, onDataChange }) =
     console.log('Failed:', errorInfo)
   }
 
+  const dateFilter = (current: Dayjs | null) => !!current && current > dayjs().endOf('day')
+
   return (
     <Form
       name="employee-form"
@@ -81,7 +83,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee, onDataChange }) =
       <Form.Item<FieldType>
         label="Firstname"
         name="firstname"
-        rules={[{ required: true, message: 'Please input your Firstname!' }]}
+        rules={[{ required: true, message: 'Firstname is missing' }]}
       >
         <Input />
       </Form.Item>
@@ -89,7 +91,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee, onDataChange }) =
       <Form.Item<FieldType>
         label="Lastname"
         name="lastname"
-        rules={[{ required: true, message: 'Please input Lastname!' }]}
+        rules={[{ required: true, message: 'Lastname is missing' }]}
       >
         <Input />
       </Form.Item>
@@ -97,15 +99,15 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee, onDataChange }) =
       <Form.Item<FieldType>
         label="Hire Date"
         name="hiredAt"
-        rules={[{ required: true, message: 'Please choose Hire Date!' }]}
+        rules={[{ required: true, message: 'Hire Date is required' }]}
       >
-        <DatePicker />
+        <DatePicker disabledDate={dateFilter} style={{ width: '100%' }} />
       </Form.Item>
 
       <Form.Item<FieldType>
         label="Department"
         name="departmentId"
-        rules={[{ required: true, message: 'Please choose which Department!' }]}
+        rules={[{ required: true, message: 'Choose a Department' }]}
       >
         <Select>
           {
@@ -119,21 +121,21 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ employee, onDataChange }) =
       <Form.Item<FieldType>
         label="Telephone"
         name="phone"
-        rules={[{ required: true, message: 'Please input your Telephone!' }]}
+        rules={[{ required: true, message: 'Telephone is missing' }]}
       >
-        <Input />
+        <Input placeholder="+1 555 555555" />
       </Form.Item>
 
       <Form.Item<FieldType>
         label="Address"
         name="address"
-        rules={[{ required: true, message: 'Please input your Address!' }]}
+        rules={[{ required: true, message: 'Address is missing' }]}
       >
-        <Input />
+        <Input placeholder="132 Street, New York 12401, US" />
       </Form.Item>
       <Divider />
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+      <Form.Item>
+        <Button type="primary" htmlType="submit" block>
           Submit
         </Button>
       </Form.Item>
