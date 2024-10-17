@@ -74,6 +74,9 @@ class EmployeeService {
 
   async getAllEmployees(): Promise<Employee[]> {
     const employees = await this.employeeRepository.find({
+      relations: {
+        department: true,
+      },
       order: {
         firstname: 'ASC',
         lastname: 'ASC',

@@ -15,7 +15,7 @@ import { swaggerDoc } from './infra/http/swagger'
 import { swaggerUI} from '@hono/swagger-ui'
 import { Context } from 'hono'
 
-const { NODE_ENV } = process.env
+const { NODE_ENV, PORT } = process.env
 
 ApplicationContext.initialize()
 
@@ -51,7 +51,7 @@ if (NODE_ENV !== 'production') {
 
 serve({
     fetch: httpServer.fetch,
-    port: 8787,
+    port: Number(PORT),
   },
   async (info: AddressInfo) => {
     console.log(`Server at: http://${info.address}:${info.port}`)
